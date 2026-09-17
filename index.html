@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead__title">
+      <span class="masthead__mark">§</span>
+      <h1>Student Register</h1>
+    </div>
+    <div class="masthead__meta">
+      <span id="recordCount">0 records</span>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- Entry card: create / edit -->
+    <section class="card" aria-labelledby="formTitle">
+      <div class="card__head">
+        <h2 id="formTitle">New entry</h2>
+        <span class="card__index" id="cardIndex">—</span>
+      </div>
+
+      <form id="studentForm" novalidate>
+        <input type="hidden" id="studentId" />
+
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" id="name" placeholder="e.g. Meera Krishnan" required />
+        </label>
+
+        <label class="field">
+          <span>Roll number</span>
+          <input type="text" id="roll_no" placeholder="e.g. R-2024-014" required />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" id="email" placeholder="name@example.edu" required />
+        </label>
+
+        <label class="field">
+          <span>Course</span>
+          <input type="text" id="course" placeholder="e.g. B.Sc. Physics" required />
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span>Year</span>
+            <input type="number" id="year" min="1" max="8" placeholder="1–8" required />
+          </label>
+          <label class="field">
+            <span>Marks</span>
+            <input type="number" id="marks" min="0" max="100" step="0.1" placeholder="0–100" required />
+          </label>
+        </div>
+
+        <p class="form-errors" id="formErrors" role="alert" hidden></p>
+
+        <div class="card__actions">
+          <button type="submit" class="btn btn--primary" id="submitBtn">Add to register</button>
+          <button type="button" class="btn btn--ghost" id="cancelBtn" hidden>Cancel edit</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Ledger -->
+    <section class="ledger" aria-labelledby="ledgerTitle">
+      <div class="ledger__head">
+        <h2 id="ledgerTitle">Ledger</h2>
+        <label class="search">
+          <span class="sr-only">Search students</span>
+          <input type="search" id="searchInput" placeholder="Search by name, roll no. or course" />
+        </label>
+      </div>
+
+      <div class="ledger__table-wrap">
+        <table class="ledger__table">
+          <thead>
+            <tr>
+              <th scope="col">Roll no.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Course</th>
+              <th scope="col">Yr</th>
+              <th scope="col">Marks</th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- rows injected by script.js -->
+          </tbody>
+        </table>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <p>The register is empty.</p>
+          <p class="empty-state__hint">Add the first student using the form on the left.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
